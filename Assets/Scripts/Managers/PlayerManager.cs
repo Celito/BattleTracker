@@ -43,6 +43,8 @@ public class PlayerManager : MonoBehaviour
         RosterList newList = new RosterList();
 
         newList.Load(listXmlRoot);
+
+        _lists.Add(newList);
     }
 
     // Start is called before the first frame update

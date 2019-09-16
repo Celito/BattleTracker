@@ -7,7 +7,7 @@ public class Detachment
 
     public void Load(XmlNode detachmentXml)
     {
-        _name = detachmentXml.Attributes["name"].Value;
+        _name = detachmentXml.Attributes["name"]?.Value;
 
         Debug.LogFormat("Detachment: Loading detachment \"{0}\"", _name);
         

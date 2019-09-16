@@ -21,10 +21,9 @@ public class RosterList
         Debug.LogFormat("RosterList: Loading roster \"{0}\"", _name);
 
         // Load cost limits
-        XmlNode costLimitsXml = rosterXml["costLimits"];
-        XmlNodeList costLimitsXmlList = costLimitsXml.SelectNodes("costLimit");
-
-        Debug.LogFormat("RosterList: Number of cost limits children \"{0}\"", costLimitsXml.ChildNodes.Count);
+        XmlNodeList costLimitsXmlList = 
+            rosterXml.SelectNodes("//*[local-name()='costLimits']/*[local-name()='costLimit']");
+        
         Debug.LogFormat("RosterList: Number of cost limits \"{0}\"", costLimitsXmlList.Count);
 
         for (int i = 0; i < costLimitsXmlList.Count; i++)
@@ -33,21 +32,21 @@ public class RosterList
             switch (costLimitXml.Attributes["typeId"].Value)
             {
                 case "points": // Points typeId
-                    double.TryParse(costLimitsXml.Attributes["value"].Value, out _pointsLimit);
+                    double.TryParse(costLimitXml.Attributes["value"].Value, out _pointsLimit);
                     break;
                 case "e356-c769-5920-6e14": // PL typeId
-                    double.TryParse(costLimitsXml.Attributes["value"].Value, out _powerLevelLimit);
+                    double.TryParse(costLimitXml.Attributes["value"].Value, out _powerLevelLimit);
                     break;
                 default:
                     Debug.LogWarningFormat("RosterList: Ignoring unknown type of cost limit " +
-                        "\"{0}\"", costLimitsXml.Attributes["typeId"].Value);
+                        "\"{0}\"", costLimitXml.Attributes["typeId"].Value);
                     break;
-
             }
         }
 
         // Load forces
-        XmlNodeList forcesListXml = listXmlRoot.SelectNodes("//roster/forces");
+        XmlNodeList forcesListXml = 
+            rosterXml.SelectNodes("//*[local-name()='forces']/*[local-name()='force']");
 
         Debug.LogFormat("RosterList: Number of force entries \"{0}\"", forcesListXml.Count);
 
