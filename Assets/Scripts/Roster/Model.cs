@@ -17,8 +17,6 @@ public class Model
     public void Load(XmlNode modelXml)
     {
         name = modelXml.Attributes["name"]?.Value;
-        
-        Debug.LogFormat("Model: Loading model (name = \"{0}\")", name);
     }
 
     internal void SetUnit(Unit unit)

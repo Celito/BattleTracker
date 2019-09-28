@@ -16,13 +16,14 @@ public class PlayerManager : MonoBehaviour
 
     public List<RosterList> lists
     {
-        get { return _lists; }
+        get;
+        private set;
     }
-
-    private List<RosterList> _lists = new List<RosterList>();
 
     private void Awake()
     {
+        lists = new List<RosterList>();
+
         instance = this;
 
         // TODO: Load the test list
@@ -34,7 +35,7 @@ public class PlayerManager : MonoBehaviour
         {
             listXmlRoot.Load(testList);
         }
-        catch(FileNotFoundException e)
+        catch(FileNotFoundException)
         {
             Debug.LogErrorFormat("Error trying to load the test roster list file \"{0}\"", 
                 testList);
@@ -44,7 +45,7 @@ public class PlayerManager : MonoBehaviour
 
         newList.Load(listXmlRoot);
 
-        _lists.Add(newList);
+        lists.Add(newList);
     }
 
     // Start is called before the first frame update

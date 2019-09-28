@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Xml;
 using UnityEngine;
 
@@ -16,9 +17,7 @@ public class Detachment
     public void Load(XmlNode detachmentXml)
     {
         _name = detachmentXml.Attributes["name"]?.Value;
-
-        Debug.LogFormat("Detachment: Loading detachment \"{0}\"", _name);
-
+        
         XmlNodeList selectionsXml = 
             detachmentXml.SelectNodes("*[local-name()='selections']/*[local-name()='selection']");
 
@@ -46,5 +45,10 @@ public class Detachment
                     break;
             }
         }
-    }    
+    }
+
+    public List<Unit> GetAllUnits()
+    {
+        return _units;
+    }
 }

@@ -11,9 +11,19 @@ public class RosterList
 
     private string _name;
 
-    private List<Detachment> _detachments;
+    private List<Detachment> _detachments = new List<Detachment>();
 
-    internal void Load(XmlDocument listXmlRoot)
+    public List<Unit> GetAllUnits()
+    {
+        List<Unit> units = new List<Unit>();
+        foreach (var detachment in _detachments)
+        {
+            units.AddRange(detachment.GetAllUnits());
+        }
+        return units;
+    }
+
+    public void Load(XmlDocument listXmlRoot)
     {
         XmlNode rosterXml = listXmlRoot["roster"];
         _name = rosterXml.Attributes["name"].Value;
@@ -23,8 +33,6 @@ public class RosterList
         // Load cost limits
         XmlNodeList costLimitsXmlList = 
             rosterXml.SelectNodes("//*[local-name()='costLimits']/*[local-name()='costLimit']");
-        
-        Debug.LogFormat("RosterList: Number of cost limits \"{0}\"", costLimitsXmlList.Count);
 
         for (int i = 0; i < costLimitsXmlList.Count; i++)
         {
@@ -57,6 +65,8 @@ public class RosterList
             Detachment newDetachment = new Detachment();
 
             newDetachment.Load(forceXml);
+
+            _detachments.Add(newDetachment);
         }
     }
 }
