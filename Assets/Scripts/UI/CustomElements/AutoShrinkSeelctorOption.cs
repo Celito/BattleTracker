@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class AutoShrinkSeelctorOption : MonoBehaviour
@@ -14,9 +15,12 @@ public class AutoShrinkSeelctorOption : MonoBehaviour
         updateScale();
     }
 
-    public void Initalize(ScrollRect selector)
+    public void Initialize(ScrollRect selector, GameObject content)
     {
         _selector = selector;
+        content.transform.SetParent(this.transform);
+        content.transform.localPosition = new Vector3();
+        _shrinkingPanel = content.GetComponent<RectTransform>();
     }
 
     private void updateScale()

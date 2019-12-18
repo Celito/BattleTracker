@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class Unit
 {
+    public string name
+    {
+        get { return _name; }
+    }
+
     private string _name;
 
     private List<string> _categories = new List<string>();

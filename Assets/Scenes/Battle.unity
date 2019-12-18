@@ -497,6 +497,8 @@ MonoBehaviour:
   players:
   - {fileID: 1684609015}
   - {fileID: 1366286152}
+  _unitOptionMold: {fileID: 4782364082554249186, guid: da660a140dd5c4c42a5b27c646db43e2,
+    type: 3}
   _tempModelSelector: {fileID: 203199379}
 --- !u!4 &2145785832
 Transform:

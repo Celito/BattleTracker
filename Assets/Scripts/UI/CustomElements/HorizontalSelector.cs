@@ -30,17 +30,15 @@ public class HorizontalSelector : MonoBehaviour, IEndDragHandler
         }
     }
 
-    public void AddUnit(Unit addedUnit)
+    public void AddOption(GameObject content)
     {
-        GameObject unitOpt = Instantiate(_optionMold, _optionsPanel.transform);
-        unitOpt.GetComponent<AutoShrinkSeelctorOption>()?.Initalize(_scrollRect);
-
-        // TODO: Pass down the unit data
+        GameObject newOption = Instantiate(_optionMold, _optionsPanel.transform);
+        newOption.GetComponent<AutoShrinkSeelctorOption>()?.Initialize(_scrollRect, content);
     }
 
     private void UpdateScrollPosition(Vector2 pos)
     {
-        
+        // TODO: Add the snap during the scrolling;
     }
 
     public void OnEndDrag(PointerEventData eventData)
