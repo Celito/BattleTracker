@@ -20,5 +20,6 @@ public class UnitOption : MonoBehaviour
 
         //TODO: Temporarly add the unit information about its movement (the
         // unit information wiil be shown according to the phase)
+
     }
 }
