@@ -56,7 +56,7 @@ public class RosterList
         XmlNodeList forcesListXml = 
             rosterXml.SelectNodes("//*[local-name()='forces']/*[local-name()='force']");
 
-        Debug.LogFormat("RosterList: Number of force entries \"{0}\"", forcesListXml.Count);
+        //Debug.LogFormat("RosterList: Number of force entries \"{0}\"", forcesListXml.Count);
 
         for (int i = 0; i < forcesListXml.Count; i++)
         {

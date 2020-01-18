@@ -57,9 +57,6 @@ public class Unit
                     break;
             }
         }
-
-        Debug.LogFormat("Unit: Loading unit (name = \"{0}\", categories = [{1}])", _name, 
-            string.Join(", ", _categories.ToArray()));
     }
 
     public void AddModel(Model model)
