@@ -6,6 +6,7 @@ public class BattleManager : MonoBehaviour
 {
     public List<PlayerManager> players = new List<PlayerManager>();
 
+    [SerializeField] private GameObject _unitOptionMold;
     [SerializeField] private PhaseScreen _phaseScreenModel;
     [SerializeField] private Canvas _canvas;
 
@@ -30,7 +31,13 @@ public class BattleManager : MonoBehaviour
 
         foreach (var unit in units)
         {
-            _tempModelSelector.AddUnit(unit);
+            GameObject unitOpt = Instantiate(_unitOptionMold);
+            unitOpt.GetComponent<UnitOption>()?.Initialize(unit);
+
+            _tempModelSelector.AddOption(unitOpt);
         }
+
+        // TODO: After all the options have been added, update the options 
+        // sizes
     }
 }
