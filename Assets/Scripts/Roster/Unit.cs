@@ -7,10 +7,15 @@ public class Unit
 {
     public string name
     {
-        get { return _name; }
+        get;
+        private set;
     }
 
-    private string _name;
+    public string entryUnitId
+    {
+        get;
+        private set;
+    }
 
     private List<string> _categories = new List<string>();
 
@@ -18,12 +23,13 @@ public class Unit
 
     public Unit(string name = "")
     {
-        _name = name;
+        this.name = name;
     }
 
     public void Load(XmlNode unitXml)
     {
-        _name = unitXml.Attributes["name"]?.Value;
+        name = unitXml.Attributes["name"]?.Value;
+        entryUnitId = unitXml.Attributes["entryId"]?.Value.Split(':')[0];
 
         XmlNodeList categoriesXml = 
             unitXml.SelectNodes("*[local-name()='categories']/*[local-name()='category']");
@@ -63,7 +69,7 @@ public class Unit
             }
         }
 
-        Debug.LogFormat("Unit: Loading unit (name = \"{0}\", categories = [{1}])", _name, 
+        Debug.LogFormat("Unit: Loading unit (name = \"{0}\", categories = [{1}])", name, 
             string.Join(", ", _categories.ToArray()));
     }
 
