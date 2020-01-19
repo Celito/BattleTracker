@@ -39,9 +39,9 @@ public class Detachment
                     _units.Add(unit);
                     break;
                 default:
-                    Debug.LogWarningFormat("Detachment: Error trying to load an unknown type of " +
-                        "selection in the detachment: [type: \"{0}\", name: \"{1}\"]", type,
-                        selectionXml.Attributes["name"]?.Value);
+                    //Debug.LogWarningFormat("Detachment: Error trying to load an unknown type of " +
+                    //    "selection in the detachment: [type: \"{0}\", name: \"{1}\"]", type,
+                    //    selectionXml.Attributes["name"]?.Value);
                     break;
             }
         }
